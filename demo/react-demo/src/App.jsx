@@ -7,7 +7,7 @@ export const App = () => {
       <nav>
         <ul>
           <li>
-            <Link to={""}>home</Link>
+            <Link to={"/"}>home</Link>
           </li>
           <li>
             <Link to={"contacts"}>Contacts</Link>
