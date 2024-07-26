@@ -1,0 +1,12 @@
+.nav-bar {
+  background-color: aqua;
+}
+.nav-bar-list {
+  display: flex;
+  list-style: none;
+}
+
+.nav-bar-link {
+  margin: 20px;
+  text-decoration: none;
+}
