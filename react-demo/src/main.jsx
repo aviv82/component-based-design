@@ -10,6 +10,8 @@ import { HomePage } from "./pages/home/HomePage.jsx";
 import { GroupsPage } from "./pages/groups/GroupsPage.jsx";
 import { MembersPage } from "./pages/members/MembersPage.jsx";
 
+import { HealthLoader } from "./loaders/HealthLoader.jsx";
+
 const routes = createMemoryRouter([
   {
     path: "/",
@@ -18,6 +20,7 @@ const routes = createMemoryRouter([
     children: [
       {
         path: "/",
+        loader: HealthLoader,
         element: <HomePage />,
       },
       {

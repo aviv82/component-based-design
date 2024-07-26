@@ -1,17 +1,7 @@
-import { useEffect, useState } from "react";
-import { getHealth } from "../../services/healthService";
+import { useLoaderData } from "react-router";
 
 export const HomePage = () => {
-  const [message, setMessage] = useState({});
-
-  useEffect(() => {
-    getHealthStatus();
-  }, []);
-
-  const getHealthStatus = async () => {
-    const status = await getHealth();
-    setMessage(status.data);
-  };
+  const message = useLoaderData();
 
   return (
     <div>
