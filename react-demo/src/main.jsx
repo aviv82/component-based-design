@@ -11,6 +11,7 @@ import { GroupsPage } from "./pages/groups/GroupsPage.jsx";
 import { MembersPage } from "./pages/members/MembersPage.jsx";
 
 import { HealthLoader } from "./loaders/HealthLoader.jsx";
+import { GroupDetailsPage } from "./pages/group-details/GroupDetailsPage.jsx";
 
 const routes = createMemoryRouter([
   {
@@ -26,6 +27,10 @@ const routes = createMemoryRouter([
       {
         path: "groups",
         element: <GroupsPage />,
+      },
+      {
+        path: "groups/:id",
+        element: <GroupDetailsPage />,
       },
       {
         path: "members",
