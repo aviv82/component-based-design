@@ -1,0 +1,14 @@
+.nav-bar {
+  background-color: aqua;
+}
+
+.nav-bar-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  list-style: none;
+}
+
+.nav-bar-link {
+  text-decoration: none;
+}
