@@ -1,0 +1,27 @@
+.modal-bg {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(173, 176, 176, 0.4);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 1;
+  overflow: auto;
+}
+
+.modal-box {
+  background-color: white;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 40%;
+  width: 40%;
+  border: solid 2px black;
+  border-radius: 8px;
+}

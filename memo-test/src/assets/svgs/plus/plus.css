@@ -1,0 +1,19 @@
+.icon {
+  cursor: pointer;
+}
+
+.plus {
+  width: 40px;
+  height: 40px;
+  fill: rgb(109, 239, 57);
+  transition: fill 2s ease;
+}
+
+.plus:hover {
+  fill: rgb(190, 248, 167);
+}
+
+.plus:active {
+  transition: fill 0.2s ease;
+  fill: rgb(39, 80, 22);
+}
