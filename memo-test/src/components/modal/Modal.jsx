@@ -1,16 +1,22 @@
-import { useState } from "react";
-import { Button } from "../button/Button";
 import "./modal.css";
 
+import { useState } from "react";
+
+import { MODAL_TYPES } from "../../common/constants/modalTypes";
+
+import { Button } from "../button/Button";
+
 export const Modal = ({
-  type = "create",
+  item = {},
+  type = MODAL_TYPES.Create,
   onClose = () => console.log("close"),
-  onSubmit = () => console.log("submit"),
+  onSubmitCreate = () => console.log("submit create"),
+  onSubmitEdit = () => console.log("submit edit"),
 }) => {
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    imageUrl: "",
+    title: item.Title ?? "",
+    description: item.Description ?? "",
+    imageUrl: item.ImageURL ?? "",
   });
 
   const handleFieldChange = (event) => {
@@ -19,22 +25,34 @@ export const Modal = ({
   };
 
   const onCreate = async () => {
-    await onSubmit({
+    await onSubmitCreate({
       title: formData.title,
       description: formData.description,
       imageUrl: formData.imageUrl,
     });
   };
 
+  const onEdit = async () => {
+    await onSubmitEdit(
+      {
+        title: formData.title,
+        description: formData.description,
+        imageUrl: formData.imageUrl,
+      },
+      item.GroupId
+    );
+  };
+
   return (
     <div className="modal-bg">
       <div className="modal-box">
-        <pre>{JSON.stringify(formData, null, 2)}</pre>
-        {type === "create" && (
+        {/* <pre>{JSON.stringify(formData, null, 2)}</pre> */}
+        {type === MODAL_TYPES.Edit && (
           <div>
-            <h3>new group</h3>
+            <h3>edit group {item.GroupId}</h3>
             <form className="form">
-              <label htmlFor="title">
+              <label className="form-label" htmlFor="title">
+                new group title
                 <input
                   name="title"
                   type="text"
@@ -42,9 +60,9 @@ export const Modal = ({
                   value={formData.title}
                   onChange={handleFieldChange}
                 />
-                group title
               </label>
-              <label htmlFor="description">
+              <label className="form-label" htmlFor="description">
+                new group description
                 <textarea
                   name="description"
                   type="textarea"
@@ -52,9 +70,9 @@ export const Modal = ({
                   value={formData.description}
                   onChange={handleFieldChange}
                 />
-                group description{" "}
               </label>
-              <label htmlFor="imageUrl">
+              <label className="form-label" htmlFor="imageUrl">
+                new group image url
                 <input
                   name="imageUrl"
                   type="text"
@@ -62,10 +80,48 @@ export const Modal = ({
                   value={formData.imageUrl}
                   onChange={handleFieldChange}
                 />
-                group image url
               </label>
             </form>
-            <Button body="create" action={onCreate}></Button>
+            <Button body="submit" action={onEdit}></Button>
+            <Button style="cancel" body="close" action={onClose}></Button>
+          </div>
+        )}
+        {type === MODAL_TYPES.Create && (
+          <div>
+            <h3>new group</h3>
+            <form className="form">
+              <label className="form-label" htmlFor="title">
+                group title
+                <input
+                  name="title"
+                  type="text"
+                  placeholder="group title"
+                  value={formData.title}
+                  onChange={handleFieldChange}
+                />
+              </label>
+              <label className="form-label" htmlFor="description">
+                group description
+                <textarea
+                  name="description"
+                  type="textarea"
+                  placeholder="group description"
+                  value={formData.description}
+                  onChange={handleFieldChange}
+                />
+              </label>
+              <label className="form-label" htmlFor="imageUrl">
+                group image url
+                <input
+                  name="imageUrl"
+                  type="text"
+                  placeholder="group image url"
+                  value={formData.imageUrl}
+                  onChange={handleFieldChange}
+                />
+              </label>
+            </form>
+            <Button style="create" body="create" action={onCreate}></Button>
             <Button style="cancel" body="close" action={onClose}></Button>
           </div>
         )}

@@ -1,0 +1,22 @@
+.icon {
+  cursor: pointer;
+}
+
+.edit {
+  stroke-width: 2px;
+  width: 40px;
+  height: 40px;
+  stroke: rgb(39, 125, 245);
+  transition: stroke 2s ease;
+  fill: transparent;
+}
+
+.edit:hover {
+  stroke: rgb(188, 217, 252);
+  transition: fill 3s ease;
+  fill: rgb(3, 76, 139);
+}
+
+.edit:active {
+  stroke: rgb(39, 80, 22);
+}

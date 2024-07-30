@@ -13,6 +13,7 @@
 }
 
 .modal-box {
+  padding: 20px;
   background-color: white;
   position: absolute;
   left: 0;
@@ -24,4 +25,15 @@
   width: 40%;
   border: solid 2px black;
   border-radius: 8px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.form-label {
+  display: flex;
+  flex-direction: column;
 }

@@ -13,3 +13,9 @@ export const create = async (createGroupRequest = {}) => {
   // console.log("create", result);
   return result;
 };
+
+export const update = async (updateGroupRequest = {}, id = 0) => {
+  const result = await http.put(`/groups/${id}`, updateGroupRequest);
+  console.log("update", result);
+  return result;
+};

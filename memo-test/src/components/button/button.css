@@ -45,3 +45,24 @@
   background-color: rgb(45, 78, 145);
   color: rgb(239, 246, 252);
 }
+
+.create {
+  border: rgb(5, 178, 68) solid 1px;
+  padding: 6px;
+  border-radius: 6px;
+  color: rgb(95, 141, 107);
+  background-color: rgb(109, 245, 125);
+  transition: color 1s ease;
+  transition: background-color 2s ease;
+}
+
+.create:hover {
+  background-color: rgb(203, 248, 202);
+  color: rgb(75, 207, 52);
+}
+
+.create:active {
+  transition: background-color 0.4s ease;
+  background-color: rgb(57, 145, 45);
+  color: rgb(198, 251, 190);
+}
