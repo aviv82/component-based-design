@@ -12,6 +12,7 @@ export const Modal = ({
   onClose = () => console.log("close"),
   onSubmitCreate = () => console.log("submit create"),
   onSubmitEdit = () => console.log("submit edit"),
+  onSubmitDelete = () => console.log("submit delete"),
 }) => {
   const [formData, setFormData] = useState({
     title: item.Title ?? "",
@@ -43,10 +44,26 @@ export const Modal = ({
     );
   };
 
+  const onDelete = async () => {
+    await onSubmitDelete(item.GroupId);
+  };
+
   return (
     <div className="modal-bg">
       <div className="modal-box">
         {/* <pre>{JSON.stringify(formData, null, 2)}</pre> */}
+        {type === MODAL_TYPES.Delete && (
+          <div>
+            <h3>delete group {item.GroupId}</h3>
+            <p>
+              you are about to delete{" "}
+              <strong className="strong">{item.Title}</strong>. this cannot be
+              undone. are you sure you would like to proceed?
+            </p>
+            <Button style="danger" body="delete" action={onDelete}></Button>
+            <Button style="cancel" body="close" action={onClose}></Button>
+          </div>
+        )}
         {type === MODAL_TYPES.Edit && (
           <div>
             <h3>edit group {item.GroupId}</h3>

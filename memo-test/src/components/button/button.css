@@ -66,3 +66,24 @@
   background-color: rgb(57, 145, 45);
   color: rgb(198, 251, 190);
 }
+
+.danger {
+  border: rgb(178, 8, 5) solid 1px;
+  padding: 6px;
+  border-radius: 6px;
+  color: white;
+  background-color: rgb(245, 111, 109);
+  transition: color 1s ease;
+  transition: background-color 2s ease;
+}
+
+.danger:hover {
+  background-color: rgb(248, 202, 202);
+  color: rgb(207, 52, 52);
+}
+
+.danger:active {
+  transition: background-color 0.4s ease;
+  background-color: rgb(145, 45, 45);
+  color: rgb(251, 190, 190);
+}

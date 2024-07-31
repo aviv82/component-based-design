@@ -1,0 +1,19 @@
+.icon {
+  cursor: pointer;
+}
+
+.delete {
+  fill: rgb(245, 78, 78);
+  width: 40px;
+  height: 40px;
+  transition: fill 2s ease;
+}
+
+.delete:hover {
+  fill: rgb(248, 167, 167);
+}
+
+.delete:active {
+  transition: fill 0.2s ease;
+  fill: rgb(80, 22, 22);
+}

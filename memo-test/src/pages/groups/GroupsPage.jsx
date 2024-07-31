@@ -1,22 +1,46 @@
-import { Link } from "react-router-dom";
 import "./groupsPage.css";
 
-import { useLoaderData } from "react-router";
-import { Button } from "../../components/button/Button";
-import { Plus } from "../../assets/svgs/plus/Plus";
-import { useRef, useState } from "react";
-import { Modal } from "../../components/modal/Modal";
-import { create, update } from "../../services/groupServices";
-import { Edit } from "../../assets/svgs/edit/Edit";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+// import { useLoaderData } from "react-router";
+
 import { MODAL_TYPES } from "../../common/constants/modalTypes";
 
+import {
+  create,
+  deleteGroup,
+  getAll,
+  update,
+} from "../../services/groupServices";
+
+import { Button } from "../../components/button/Button";
+import { Plus } from "../../assets/svgs/plus/Plus";
+import { Modal } from "../../components/modal/Modal";
+import { Edit } from "../../assets/svgs/edit/Edit";
+import { Delete } from "../../assets/svgs/delete/Delete";
+
 export const GroupsPage = () => {
-  const groups = useLoaderData();
+  // const loadData = useLoaderData();
 
   const [isModal, setIsModal] = useState(false);
+  const [groups, setGroups] = useState([]);
 
   const modalType = useRef(MODAL_TYPES.Create);
   const selectedGroup = useRef({});
+
+  useEffect(() => {
+    loadGroups();
+  }, []);
+
+  useEffect(() => {
+    if (isModal) return;
+    loadGroups();
+  }, [isModal]);
+
+  const loadGroups = async () => {
+    const data = await getAll();
+    setGroups(data.data);
+  };
 
   const toggleModal = (type = MODAL_TYPES.Create, item = {}) => {
     modalType.current = type;
@@ -38,6 +62,13 @@ export const GroupsPage = () => {
     return;
   };
 
+  const handleDeleteGroup = async (id = 0) => {
+    const result = await deleteGroup(id);
+    console.log(result.data);
+    toggleModal();
+    return;
+  };
+
   return (
     <div className="groups-page">
       {/* <pre>{JSON.stringify(groups, null, 2)}</pre> */}
@@ -48,6 +79,7 @@ export const GroupsPage = () => {
           onClose={toggleModal}
           onSubmitCreate={handleCreateNewGroup}
           onSubmitEdit={handleUpdateGroup}
+          onSubmitDelete={handleDeleteGroup}
         />
       )}
       <Button
@@ -71,11 +103,14 @@ export const GroupsPage = () => {
                 </div>
                 <div className="list-button-section">
                   <Button
-                    action={() => {
-                      toggleModal(MODAL_TYPES.Edit, g);
-                    }}
+                    action={() => toggleModal(MODAL_TYPES.Edit, g)}
                     style="icon"
                     body={<Edit />}
+                  />
+                  <Button
+                    action={() => toggleModal(MODAL_TYPES.Delete, g)}
+                    style="icon"
+                    body={<Delete />}
                   />
                 </div>
               </div>

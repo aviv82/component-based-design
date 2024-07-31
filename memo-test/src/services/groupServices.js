@@ -16,6 +16,12 @@ export const create = async (createGroupRequest = {}) => {
 
 export const update = async (updateGroupRequest = {}, id = 0) => {
   const result = await http.put(`/groups/${id}`, updateGroupRequest);
-  console.log("update", result);
+  // console.log("update", result);
+  return result;
+};
+
+export const deleteGroup = async (id = 0) => {
+  const result = await http.delete(`/groups/${id}`);
+  console.log("delete", result);
   return result;
 };
